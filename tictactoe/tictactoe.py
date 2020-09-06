@@ -3,6 +3,7 @@ Tic Tac Toe Player
 """
 
 import math
+import random
 
 X = "X"
 O = "O"
@@ -22,7 +23,19 @@ def player(board):
     """
     Returns player who has the next turn on a board.
     """
-    raise NotImplementedError
+    if board == initial_state():
+        return X
+    else:
+        O_count = board[0].count(O) + board[1].count(O) + board[2].count(O)
+        X_count = board[0].count(X) + board[1].count(X) + board[2].count(X)
+        if ( (O_count + X_count) % 2 == 0):
+            return X
+        else:
+            return O
+
+
+
+    
 
 
 def actions(board):
@@ -36,7 +49,7 @@ def result(board, action):
     """
     Returns the board that results from making move (i, j) on the board.
     """
-    raise NotImplementedError
+    board[action[0]][action[1]] = player(board)
 
 
 def winner(board):
@@ -65,3 +78,4 @@ def minimax(board):
     Returns the optimal action for the current player on the board.
     """
     raise NotImplementedError
+   
