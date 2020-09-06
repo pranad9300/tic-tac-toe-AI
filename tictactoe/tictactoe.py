@@ -3,7 +3,7 @@ Tic Tac Toe Player
 """
 
 import math
-import random
+
 
 X = "X"
 O = "O"
@@ -55,21 +55,36 @@ def result(board, action):
     """
     Returns the board that results from making move (i, j) on the board.
     """
-    board[action[0]][action[1]] = player(board)
+    raise NotImplementedError
 
 
 def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
-    raise NotImplementedError
+    t = player(board)
+    if t == X:
+        u = O
+    else:
+        u = X
+    if ( (board[0][0] == u and board[0][1]==u and board[0][2]==u) or (board[1][0] == u and board[1][1]==u and board[1][2]==u) or (board[2][0] == u and board[2][1]==u and board[2][2]==u) or (board[0][0] == u and board[1][1]==u and board[2][2]==u) or (board[0][2] == u and board[1][1]==u and board[2][0]==u) or (board[0][0] == u and board[1][0]==u and board[2][0]==u) or (board[0][1] == u and board[1][1]==u and board[2][1]==u) or(board[0][2] == u and board[1][2]==u and board[2][2]==u)):
+         return u
+   
+    else:
+         return None      
 
 
 def terminal(board):
     """
     Returns True if game is over, False otherwise.
     """
-    raise NotImplementedError
+    t = winner(board)
+    if  t == X or t == O:
+       return True
+    elif (EMPTY not in (board[0] or board[1] or board[2])): 
+       return True
+    else:
+       return False 
 
 
 def utility(board):
